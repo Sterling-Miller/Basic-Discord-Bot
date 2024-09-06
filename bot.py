@@ -27,7 +27,10 @@ async def load():
     """
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
-            await client.load_extension(f"cogs.{filename[:-3]}")
+            try:
+                await client.load_extension(f"cogs.{filename[:-3]}")
+            except Exception as e:
+                print(f'Failed to load extension {filename}\n {e}')
 
 async def main():
     """
